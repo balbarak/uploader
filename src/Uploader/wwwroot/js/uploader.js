@@ -111,6 +111,7 @@
             beforeSend: function (xhr) {
 
                 block('#form-div');
+                instance.vue.$data.isUploading = true;
             },
             success: function (xhr, status) {
 
@@ -121,8 +122,14 @@
             },
             complete: function (xhr, response) {
 
-                unblock('#form-div');
+                //unblock('#form-div');
 
+                //instance.vue.$data.isUploading = false;
+                //instance.vue.$data.totalSize = 0;
+                //instance.vue.$data.progress = 0;
+                //instance.vue.$data.speed = 0;
+                //instance.vue.$data.uploadedBytes = 0;
+                
             },
             xhr: function () {
 
