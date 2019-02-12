@@ -7,60 +7,78 @@
     <link href="~/lib/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
 }
 
-<br/>
-<h3>
-    Upload File
-</h3>
-<br />
 
 
 <div id="main-content" style="padding:20px; position:relative;">
+    <form id="upload-form"
+          method="post"
+          asp-controller="Upload"
+          asp-action="Index"
+          enctype="multipart/form-data">
 
-    <div id="vue-div">
-        <div v-if="isUploading" class="progress-overlay">
-            <p class="text-left">
-                {{uploadedBytes}} / {{totalSize}} @@ {{speed}}/s
-            </p>
+        <div id="vue-div">
 
-            <div class="progress" style="height:30px">
-                <div class="progress-bar bg-success"
-                     aria-valuenow="{{ progress }}"
-                     aria-valuemin="0"
-                     aria-valuemax="100"
-                     v-bind:style="{height:'30px',width:progress + '%'}">
-
-                    <h5 class="text-center">
-                   
-                        {{progress}}%
-
-                    </h5>
+            <h3>
+                Upload File
+            </h3>
+            <hr />
+            <input id="file-upload-input" name="File" type="file" multiple />
+            <br/>
+            <input placeholder="Write file name" type="text" class="form-control" />
+            <br />
+            <h4>
+                Description
+            </h4>
+            <hr />
+            <div class="row">
+                <div class="col-6">
+                    <textarea rows="5"
+                              :value="markdown"
+                              @@input="update"
+                              class="form-control"></textarea>
+                </div>
+                <div class="col-6">
+                    <div v-html="compiledMarkdown"></div>
                 </div>
             </div>
-            <br/>
-            <p class="text-center">
-                <i class="fa fa-circle-notch fa-spin"></i>
-
-                Uploading ...
-            </p>
-        </div>
-    </div>
-    <br />
-
-    <div id="form-div">
-        <form id="upload-form"
-              method="post"
-              asp-controller="Upload"
-              asp-action="Index"
-              enctype="multipart/form-data">
-
-            <input id="file-upload-input" name="File" type="file" multiple />
+        
+            <hr />
             <br />
-            <br />
-            <button type="button" onclick="uploader.upload();" class="btn btn-primary btn-block">
-                Submit
+
+            <div v-if="isUploading" class="progress-overlay">
+                <p class="text-left">
+                    {{uploadedBytes}} / {{totalSize}} @@ {{speed}}/s
+                </p>
+
+                <div class="progress" style="height:30px">
+                    <div class="progress-bar bg-success"
+                         aria-valuenow="{{ progress }}"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         v-bind:style="{height:'30px',width:progress + '%'}">
+
+                        <h5 class="text-center">
+
+                            {{progress}}%
+
+                        </h5>
+                    </div>
+                </div>
+                <br />
+                <p class="text-center">
+                    <i class="fa fa-circle-notch fa-spin"></i>
+
+                    Uploading ...
+                </p>
+            </div>
+
+            <button type="button" onclick="uploader.upload();" class="btn btn-success btn-block">
+                Upload File
             </button>
-        </form>
-    </div>
+            <br />
+            <br />
+        </div>
+    </form>
 
 </div>
 
@@ -76,3 +94,10 @@
 
     </script>
 }
+
+
+@*<textarea rows="10"
+              :value="markdown"
+              @@input="update"
+              class="form-control"></textarea>
+    <div v-html="compiledMarkdown" style="height:200px;"></div>*@

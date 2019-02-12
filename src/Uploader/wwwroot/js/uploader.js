@@ -1,6 +1,6 @@
 ﻿class Uploader {
 
-    constructor(input,vueSelector) {
+    constructor(input, vueSelector) {
 
         this.selector = input;
 
@@ -8,7 +8,7 @@
 
         this.form = $(input).closest('form');
         
-        this.initFileUploader();
+        let instance = this;
 
         this.vue = new Vue({
             el: this.vueSelector,
@@ -17,13 +17,27 @@
                 progress: null,
                 speed: null,
                 uploadedBytes: null,
-                isUploading:false
+                isUploading: false,
+                markdown: null
             },
             watch: {
 
             },
             methods: {
 
+                update: function (e) {
+
+                    this.markdown = e.target.value;
+
+                }
+            },
+            computed: {
+
+                compiledMarkdown: function () {
+
+                    if (this.markdown)
+                        return marked(this.markdown, { sanitize: true });
+                }
             },
             created() {
 
@@ -32,6 +46,9 @@
 
             },
             mounted() {
+
+                instance.initFileUploader();
+
             }
         });
     }
@@ -110,7 +127,7 @@
             data: formData,
             beforeSend: function (xhr) {
 
-                block('#form-div');
+                block('#main-content');
                 instance.vue.$data.isUploading = true;
             },
             success: function (xhr, status) {
@@ -119,17 +136,18 @@
             },
             error: function (xhr, status, error) {
 
+                instance.vue.$data.isUploading = false;
+                instance.vue.$data.totalSize = 0;
+                instance.vue.$data.progress = 0;
+                instance.vue.$data.speed = 0;
+                instance.vue.$data.uploadedBytes = 0;
+                unblock("#main-content");
             },
             complete: function (xhr, response) {
 
                 //unblock('#form-div');
 
-                //instance.vue.$data.isUploading = false;
-                //instance.vue.$data.totalSize = 0;
-                //instance.vue.$data.progress = 0;
-                //instance.vue.$data.speed = 0;
-                //instance.vue.$data.uploadedBytes = 0;
-                
+
             },
             xhr: function () {
 
