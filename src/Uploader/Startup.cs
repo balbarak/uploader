@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Westwind.AspNetCore.Markdown;
 
-namespace Uploader.Web
+namespace Uploader
 {
     public class Startup
     {

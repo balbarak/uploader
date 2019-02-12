@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Uploader.Web.Models;
+using Uploader.Models;
 
-namespace Uploader.Web.Controllers
+namespace Uploader.Controllers
 {
     public class HomeController : Controller
     {

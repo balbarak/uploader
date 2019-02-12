@@ -1,6 +1,6 @@
 using System;
 
-namespace Uploader.Web.Models
+namespace Uploader.Models
 {
     public class ErrorViewModel
     {
