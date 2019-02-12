@@ -1,4 +1,23 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function block(ele) {
 
-// Write your JavaScript code.
+    $(ele).block({
+        message: '<h6><i class="fa fa-circle-notch fa-spin"></i> Uploading ...</h1>',
+        css: {
+            padding: '10px',
+            backgroundColor: '#dad7d7',
+            borderRadius: '5px',
+            border:'',
+            color: 'Black'
+        },
+        overlayCSS: {
+            backgroundColor: '#000',
+            opacity: 0.4,
+            cursor: 'wait'
+        }
+    });
+}
+
+function unblock(ele) {
+
+    $(ele).unblock();
+}

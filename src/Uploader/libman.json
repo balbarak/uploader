@@ -7,8 +7,9 @@
       "destination": "wwwroot/lib/marked/"
     },
     {
-      "library": "lodash@latest",
-      "destination": "wwwroot/lib/lodash/"
+      "library": "dropzone@5.4.0",
+      "destination": "wwwroot/lib/dropzone/"
+
     }
   ]
 }

@@ -2,27 +2,41 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section styles{
+
+    <link href="~/lib/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+}
+
+
+<h3>
+    Upload your file
+</h3>
+<br/>
+
+<div id="main-content" style="padding:20px;">
+   
+    <form id="upload-form" action="/file-upload" class="dropzone">
+        <input id="file-upload-input" name="file" type="file" multiple />
+
+        <br />
+        <br />
+
+        <button type="button" onclick="block('#main-content')" class="btn btn-primary btn-block">
+            Submit
+        </button>
+    </form>
+
 </div>
 
-<markdown normalize-whitespace="true">
-    # Hello world
+@section scripts{
 
-    https://vuejs.org/v2/examples/
+    <script src="~/lib/bootstrap-fileinput/js/fileinput.min.js"></script>
 
-    * This is a test
-    * What is that ?
+    <script src="~/js/uploader.js"></script>
 
-    ## Welcome Aboard
+    <script type="text/javascript">
 
-    > Block text
+        var uploader = new Uploader("#file-upload-input");
 
-    | Tables        | Are           | Cool  |
-    | ------------- |:-------------:| -----:|
-    | col 3 is      | right-aligned | $1600 |
-    | col 2 is      | centered      |   $12 |
-    | zebra stripes | are neat      |    $1 |
-    | What the fuck | none dude     |   W   |
-</markdown>
+    </script>
+}
