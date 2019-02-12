@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Uploader.Models;
 
 namespace Uploader.Controllers
 {
     public class UploadController : Controller
     {
-        public IActionResult Index()
+        [HttpPost]
+        [DisableRequestSizeLimit]
+        public IActionResult Index(FileUploadModel model)
         {
-            return View();
+            return Ok(model.File.Length);
         }
     }
 }
