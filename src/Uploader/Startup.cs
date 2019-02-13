@@ -61,6 +61,8 @@ namespace Uploader
                 app.UseHsts();
             }
 
+            AppSettings.WebRootPath = env.WebRootPath;
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -73,6 +75,8 @@ namespace Uploader
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+           
         }
     }
 }

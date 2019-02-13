@@ -1,7 +1,42 @@
-﻿
+﻿@model FileUploadModel
 @{
     ViewData["Title"] = "Index";
 }
+@{
+    var url = ($"{Context.Request.Scheme}://{Context.Request.Host}/f/{Model.Id}");
+}
 
-<h1>Index</h1>
 
+@if (!string.IsNullOrWhiteSpace(Model.Markdown))
+{
+
+    <div class="row">
+        <div class="col-8">
+            <markdown normalize-whitespace="true">
+                @Model.Markdown
+            </markdown>
+        </div>
+        <div class="col-4">
+
+            <h3>
+                Download File
+            </h3>
+            <hr />
+
+            <a href="@url" class="text-center">
+                @url
+            </a>
+        </div>
+    </div>
+}
+else
+{
+
+    <h3> Download File</h3>
+    <hr />
+
+
+    <a href="@url" class="text-center">
+        @url
+    </a>
+}
