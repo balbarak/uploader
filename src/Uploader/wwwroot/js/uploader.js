@@ -132,6 +132,13 @@
             },
             success: function (xhr, status) {
 
+                var data = xhr;
+
+                if (data.isRedirect) {
+
+                    window.location.href = data.redirectUrl;
+                };
+
 
             },
             error: function (xhr, status, error) {

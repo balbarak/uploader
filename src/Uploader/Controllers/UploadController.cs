@@ -28,10 +28,7 @@ namespace Uploader.Controllers
         [DisableRequestSizeLimit]
         public IActionResult Index(IFormFile file,FileUploadModel model)
         {
-            JsonResultObject result = new JsonResultObject
-            {
-                RedirectUrl = Url.Action("")
-            };
+            JsonResultObject result = new JsonResultObject();
 
             try
             {
@@ -68,12 +65,12 @@ namespace Uploader.Controllers
                         fs.Write(readSpan);
                     }
                 }
-                
-                
+
+                result.IsRedirect = true;
+                result.RedirectUrl = Url.Action("Index", "File", new { id = fileName });
             }
             catch (Exception ex)
             {
-
                 return BadRequest(result);
             }
 
