@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Uploader.Models
 {
-    public class FileUploadModel
+    public class FileModel
     {
         public string Name { get; set; }
 
@@ -14,17 +13,16 @@ namespace Uploader.Models
 
         public string ContentType { get; set; }
 
-        public FileUploadModel()
+        public FileModel()
         {
 
         }
 
-        public FileUploadModel(string extension, string contentType)
+        public FileModel(string extension,string contentType)
         {
             Extension = extension;
 
             ContentType = contentType;
         }
-
     }
 }

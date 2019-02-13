@@ -10,11 +10,11 @@ namespace Uploader
     {
         public static IConfiguration Configuration { get; set; }
 
-        public static string DataFolderPath
+        public static string DataFolderName
         {
             get
             {
-                return Configuration.GetSection("FolderName").ToString();
+                return Configuration.GetSection("Storage:FolderName").Value;
             }
         }
     }

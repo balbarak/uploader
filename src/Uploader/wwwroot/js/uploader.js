@@ -64,7 +64,7 @@
             browseClass: "btn btn-secondary",
             browseLabel: "Browse ...",
             overwriteInitial: false,
-            showPreview: true,
+            showPreview: false,
             preferIconicPreview: true,
             previewFileIconSettings: { // configure your icon file extensions
                 'doc': '<i class="fa fa-file-word-o text-primary"></i>',

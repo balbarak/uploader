@@ -5,6 +5,7 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <AssemblyName>Uploader</AssemblyName>
     <RootNamespace>Uploader</RootNamespace>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
 
