@@ -3,7 +3,7 @@
     ViewData["Title"] = "Index";
 }
 @{
-    var url = ($"{Context.Request.Scheme}://{Context.Request.Host}/f/{Model.Id}");
+    var url = ($"{Context.Request.Scheme}://{Context.Request.Host}/file/{Model.Id}");
 }
 
 
@@ -11,32 +11,58 @@
 {
 
     <div class="row">
-        <div class="col-8">
-            <markdown normalize-whitespace="true">
-                @Model.Markdown
-            </markdown>
-        </div>
-        <div class="col-4">
-
+        <div class="col-md-4">
+            <br />
+            <br />
             <h3>
-                Download File
+                Download Link
             </h3>
             <hr />
+            <br />
+            <p class="text-center">
+                <a href="@url">
+                    <h5 class="text-center">
+                        @url
+                    </h5>
+                </a>
+            </p>
+            <br />
 
-            <a href="@url" class="text-center">
-                @url
+            <a href="@url" class="btn btn-primary btn-block">
+                <i class="fa fa-download"></i>
+                Download
             </a>
         </div>
+
+        <div class="col-md-8">
+            <br />
+            <br />
+            <h3>
+                Description
+            </h3>
+            <hr />
+            <markdown normalize-whitespace="true" markdown="@Model.Markdown" />
+
+        </div>
+
     </div>
 }
 else
 {
-
-    <h3> Download File</h3>
+    <br />
+    <br />
+    <h3> Download Link</h3>
     <hr />
 
 
     <a href="@url" class="text-center">
         @url
+    </a>
+
+    <br />
+    <br />
+    <a href="@url" class="btn btn-primary btn-block">
+        <i class="fa fa-download"></i>
+        Download
     </a>
 }

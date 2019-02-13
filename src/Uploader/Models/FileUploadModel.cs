@@ -18,9 +18,11 @@ namespace Uploader.Models
 
         public string Markdown { get; set; }
 
+        public DateTime Date { get; set; }
+
         public FileUploadModel()
         {
-
+            Date = DateTime.UtcNow;
         }
 
         public FileUploadModel(string extension, string contentType)

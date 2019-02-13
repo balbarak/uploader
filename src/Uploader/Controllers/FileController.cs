@@ -5,13 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Uploader.Helpers;
 using Uploader.Models;
 
 namespace Uploader.Controllers
 {
     public class FileController : Controller
     {
-        [Route("d/{id}")]
+        [Route("doc/{id}")]
         public IActionResult Index(string id)
         {
             var model = GetFileModel(id);
@@ -23,7 +24,7 @@ namespace Uploader.Controllers
         }
 
 
-        [Route("f/{id}")]
+        [Route("file/{id}")]
         public IActionResult Download(string id)
         {
             var model = GetFileModel(id);
@@ -36,9 +37,16 @@ namespace Uploader.Controllers
             var fileBytes = System.IO.File.ReadAllBytes(filePath);
 
 
-            return File(fileBytes, model.ContentType,true);
+            return File(fileBytes, model.ContentType, true);
         }
 
+
+        public IActionResult Recents()
+        {
+            var files = GetRecentFiles();
+
+            return View(files);
+        }
 
         private FileUploadModel GetFileModel(string fileName)
         {
@@ -54,6 +62,35 @@ namespace Uploader.Controllers
             var result = JsonConvert.DeserializeObject<FileUploadModel>(json);
 
             result.Id = fileName.Replace(".json", "");
+
+            return result;
+        }
+
+        private List<FileUploadModel> GetRecentFiles()
+        {
+            List<FileUploadModel> result = new List<FileUploadModel>();
+
+            if (!Directory.Exists(AppSettings.DataFolderPath))
+                return result;
+
+            var files = Directory.GetFiles(AppSettings.DataFolderPath);
+
+            var fileInfos = files.Select(a => new FileInfo(a)).ToList();
+
+            fileInfos = fileInfos.Where(a =>
+            a.Name.Contains(".json"))
+            .OrderByDescending(a => a.CreationTimeUtc)
+            .Take(10)
+            .ToList();
+
+            foreach (var item in fileInfos)
+            {
+                result.Add(new FileUploadModel()
+                {
+                    Id = item.Name.Replace(".json",""),
+                    Extension = item.Extension,
+                });
+            }
 
             return result;
         }

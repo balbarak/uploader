@@ -1,0 +1,42 @@
+﻿@model List<FileUploadModel>
+@{
+    ViewData["Title"] = "Recents";
+}
+
+<br />
+<br />
+<h3>
+    Recent Files
+</h3>
+<hr />
+
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var item in Model)
+        {
+            var url = ($"{Context.Request.Scheme}://{Context.Request.Host}/doc/{item.Id}");
+            <li>
+                <a href="@url">
+                    @item.Id
+
+                    @item.Date.ToString("dd-MM-yyyy @ hh:mm:ss tt")
+
+                </a>
+
+              
+            </li>
+
+        }
+    </ul>
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading">There is no recent files uploaded !</h4>
+        <p>
+            We cannot find any files uploaded recently in the system
+        </p>
+    </div>
+}
+

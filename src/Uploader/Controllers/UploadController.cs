@@ -35,7 +35,9 @@ namespace Uploader.Controllers
                 CheckDir();
 
                 var fileName = GenerateRandomFileName();
-                var extension = GetFileExtension(file.FileName);
+
+                var extension = FileHelper.GetExtension(file.FileName);
+
                 var fileFullNamePath = Path.Combine(DataFolderPath, fileName);
 
                 model.ContentType = file.ContentType;
@@ -108,19 +110,6 @@ namespace Uploader.Controllers
             else
                 return RandomHelper.GenerateFileName();
         }
-
-        private string GetFileExtension(string fileName)
-        {
-           var pattern = "\\.[^.\\/:*?\" <>|\r\n]+$";
-
-            var regex = new Regex(pattern);
-
-            var match = regex.Match(fileName);
-
-            if (match.Success)
-                return match.Value;
-
-            return "";
-        }
+        
     }
 }

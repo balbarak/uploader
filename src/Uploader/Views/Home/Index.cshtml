@@ -11,7 +11,7 @@
 
 
 
-<div id="main-content" style="padding:20px; position:relative;">
+<div id="main-content" style="position:relative;">
     <form id="upload-form"
           method="post"
           asp-controller="Upload"
@@ -19,13 +19,14 @@
           enctype="multipart/form-data">
 
         <div id="vue-div">
-
+            <br />
+            <br />
             <h3>
                 Upload File
             </h3>
             <hr />
             <input id="file-upload-input" name="File" type="file" multiple />
-            
+
             <br />
             <h4>
                 Description
@@ -43,7 +44,7 @@
                     <div v-html="compiledMarkdown"></div>
                 </div>
             </div>
-        
+
             <hr />
             <br />
 
