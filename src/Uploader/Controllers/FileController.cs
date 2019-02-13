@@ -29,9 +29,14 @@ namespace Uploader.Controllers
             var model = GetFileModel(id);
 
             if (model == null)
-                return View("NotFound");
+                return NotFound();
 
-            return View(model);
+            var filePath = Path.Combine(AppSettings.DataFolderPath, $"{id}{model.Extension}");
+
+            var fileBytes = System.IO.File.ReadAllBytes(filePath);
+
+
+            return File(fileBytes, model.ContentType,true);
         }
 
 
@@ -39,7 +44,7 @@ namespace Uploader.Controllers
         {
             fileName += ".json";
 
-            var fileNamePath = Path.Combine(AppSettings.DataFolderPath,fileName);
+            var fileNamePath = Path.Combine(AppSettings.DataFolderPath, fileName);
 
             if (!System.IO.File.Exists(fileNamePath))
                 return null;
@@ -48,7 +53,7 @@ namespace Uploader.Controllers
 
             var result = JsonConvert.DeserializeObject<FileUploadModel>(json);
 
-            result.Id = fileName.Replace(".json","");
+            result.Id = fileName.Replace(".json", "");
 
             return result;
         }
