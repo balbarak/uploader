@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FileUploadModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -34,6 +36,7 @@
                 <div class="col-6">
                     <textarea rows="5"
                               :value="markdown"
+                              asp-for="Markdown"
                               @@input="update"
                               class="form-control"></textarea>
                 </div>

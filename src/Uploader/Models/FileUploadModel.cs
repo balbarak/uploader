@@ -14,6 +14,8 @@ namespace Uploader.Models
 
         public string ContentType { get; set; }
 
+        public string Markdown { get; set; }
+
         public FileUploadModel()
         {
 

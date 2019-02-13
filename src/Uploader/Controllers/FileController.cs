@@ -8,6 +8,7 @@ namespace Uploader.Controllers
 {
     public class FileController : Controller
     {
+        [Route("d/{id}")]
         public IActionResult Index(string id)
         {
             return View();

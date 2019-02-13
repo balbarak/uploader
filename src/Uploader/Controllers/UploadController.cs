@@ -77,8 +77,7 @@ namespace Uploader.Controllers
 
             return Ok(result);
         }
-
-
+        
         private void CheckDir()
         {
             if (!Directory.Exists(DataFolderPath))
