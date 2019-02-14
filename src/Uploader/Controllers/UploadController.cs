@@ -62,7 +62,7 @@ namespace Uploader.Controllers
                     {
                         read = stream.Read(buffer);
 
-                        ReadOnlySpan<byte> readSpan = buffer;
+                        ReadOnlySpan<byte> readSpan = buffer.Slice(0,read);
 
                         fs.Write(readSpan);
                     }
