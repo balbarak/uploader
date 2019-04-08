@@ -21,6 +21,7 @@ namespace Uploader
             Configuration = configuration;
 
             AppSettings.Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
